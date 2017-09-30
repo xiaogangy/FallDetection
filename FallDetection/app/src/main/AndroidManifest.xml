@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ibrahim.falldetection">
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FallDetection"
+            android:label="@string/title_activity_fall_detection"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ibrahim.falldetection.MainActivity" />
+        </activity>
+        <activity
+            android:name=".FallConfiguration"
+            android:label="@string/title_activity_fall_configuration"
+            android:parentActivityName=".FallDetection"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ibrahim.falldetection.FallDetection" />
+        </activity>
+        <activity
+            android:name=".ActivityRecord"
+            android:label="@string/title_activity_record"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ibrahim.falldetection.MainActivity" />
+        </activity>
+        <activity
+            android:name=".AddContact"
+            android:label="@string/title_activity_add_contact"
+            android:parentActivityName=".FallConfiguration"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ibrahim.falldetection.FallConfiguration" />
+        </activity>
+
+        <service
+            android:name=".Service.FallMonitorService"
+            android:enabled="true"
+            android:exported="true"></service>
+    </application>
+
+</manifest>

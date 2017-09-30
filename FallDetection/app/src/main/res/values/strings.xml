@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">HealthCare System</string>
+    <string name="title_activity_fall_detection">Fall Detection</string>
+    <string name="title_activity_fall__configuration">Fall_Configuration</string>
+    <string name="title_activity_fall_configuration">Configuration</string>
+    <string name="title_activity_record">Activity Record</string>
+    <string name="title_activity_add_contact">AddContact</string>
+</resources>
