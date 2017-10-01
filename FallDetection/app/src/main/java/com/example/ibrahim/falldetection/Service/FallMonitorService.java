@@ -23,6 +23,7 @@ import com.example.ibrahim.falldetection.R;
 
 public class FallMonitorService extends Service implements SensorEventListener{
 
+
     private FileService fileService = null;
     private String[] phoneList = null;
     private SensorManager accManager;
@@ -33,6 +34,7 @@ public class FallMonitorService extends Service implements SensorEventListener{
 
     public FallMonitorService() {
     }
+
 
     public void setPhoneList(String[] phoneList) {
         this.phoneList = phoneList;
@@ -88,7 +90,7 @@ public class FallMonitorService extends Service implements SensorEventListener{
     public void onDestroy() {
         super.onDestroy();
         accManager.unregisterListener(this, accSensor);
-        System.out.println("---------------------->"+"service destroy");
+        System.out.println("---------------------->"+"Service destroy");
 
     }
 
@@ -126,15 +128,15 @@ public class FallMonitorService extends Service implements SensorEventListener{
 
     public boolean checkFall(float[] data) {
 
-        if (Math.abs(data[0]) > 10) {
+        if (Math.abs(data[0]) > 9.8) {
             System.out.println("x:"+ data[0]);
             return true;
         }
-        if (Math.abs(data[1]) > 10) {
+        if (Math.abs(data[1]) > 9.8) {
             System.out.println("y:" + data[1]);
             return true;
         }
-        if (Math.abs(data[2]) > 10) {
+        if (Math.abs(data[2]) > 9.8) {
             System.out.println("z:" + data[2]);
             return true;
         }
@@ -146,7 +148,8 @@ public class FallMonitorService extends Service implements SensorEventListener{
         //get location
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Location loc = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
-        String context = "我摔倒了！位置在 ----- "+ "纬度:" + loc.getLatitude()+"经度:" + loc.getLongitude();
+        String context = "I fell at ----- "+ "longitude:" + loc.getLatitude()+"\nlatitude:"
+                + loc.getLongitude()+"\nPlease help me !";
         System.out.println(context);
 
         //send message
@@ -159,7 +162,7 @@ public class FallMonitorService extends Service implements SensorEventListener{
     private void sendNotification(){
 
         builder.setContentTitle("HealthCare System")
-                .setContentText("检测到摔倒")
+                .setContentText("Fall Detected!")
                 .setSmallIcon(R.mipmap.ic_launcher);
 
 //        Intent notifyIntent = new Intent(FallMonitorService.this, MainActivity.class);

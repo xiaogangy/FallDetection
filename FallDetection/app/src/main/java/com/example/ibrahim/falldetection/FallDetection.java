@@ -24,14 +24,14 @@ import com.example.ibrahim.falldetection.Service.FallMonitorService;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FallDetection extends AppCompatActivity{
+public class FallDetection extends AppCompatActivity {
 
 //implements ServiceConnection
     private Button btnConfiguration;
     private ToggleButton toggleButton;
     private FallMonitorService fallMonitorService = null;
     private Intent intentservice;
-    private boolean serviceIsRunning;
+    private boolean serviceIsRunning = false;
     private Context mContext= FallDetection.this;
 
     @Override
@@ -40,18 +40,10 @@ public class FallDetection extends AppCompatActivity{
         setContentView(R.layout.activity_fall_detection);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        System.out.println("----------------context--------"+mContext);
 
         serviceIsRunning = isServiceRunning(mContext,"com.example.ibrahim.falldetection.Service.FallMonitorService");
-//        ActivityManager activityManager = (ActivityManager) getApplication().getSystemService(Context.ACTIVITY_SERVICE);
-//        List<ActivityManager.RunningServiceInfo> serviceList = activityManager.getRunningServices(40);
-//        for(int i = 0; i < serviceList.size(); i++){
-//            System.out.println(serviceList.get(i).service.getClassName());
-//        }
-
         intentservice = new Intent(FallDetection.this,FallMonitorService.class);
         toggleButton = (ToggleButton)findViewById(R.id.toggleButton);
-        System.out.println("----------------service running--------"+serviceIsRunning);
         if(serviceIsRunning){
             toggleButton.setChecked(true);
         }else{
@@ -62,12 +54,14 @@ public class FallDetection extends AppCompatActivity{
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(compoundButton.isChecked()){
                     startService(intentservice);
-                    Toast.makeText(FallDetection.this,"Start Monitor",Toast.LENGTH_SHORT).show();
                     //bindService(intentservice,FallDetection.this, Context.BIND_AUTO_CREATE);
+                    Toast.makeText(FallDetection.this,"Start Monitor",Toast.LENGTH_SHORT).show();
+
                 }else{
                     stopService(intentservice);
-                    Toast.makeText(FallDetection.this,"Close Monitor",Toast.LENGTH_SHORT).show();
                     //unbindService(FallDetection.this);
+                    Toast.makeText(FallDetection.this,"Close Monitor",Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -83,42 +77,19 @@ public class FallDetection extends AppCompatActivity{
         });
     }
 
-//    @Override
-//    //成功绑定到service时会运行此方法
-//    public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-//
-//        System.out.println("OnServiceConnected");
-//        fallMonitorService = ((FallMonitorService.BinderService)iBinder).getService();
-//        FileService fileService = new FileService(this);
-//        String phone = fileService.readContentFromFile("Phone.txt");
-//        String[] phoneList = {};
-//        if (phone.length()>0){
-//            phoneList = phone.split("\\.");
-//        }
-//        fallMonitorService.setPhoneList(phoneList);
-//    }
-//
-//    @Override
-//    //service崩溃的时候会运行此方法
-//    public void onServiceDisconnected(ComponentName componentName) {
-//
-//    }
 
 
 
     //判断服务是否在运行
     public static boolean isServiceRunning(Context mContext, String className) {
         boolean isRunning = false;
-        System.out.println("进入判断服务");
         ActivityManager activityManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningServiceInfo> serviceList = activityManager.getRunningServices(30);
+        List<ActivityManager.RunningServiceInfo> serviceList = activityManager.getRunningServices(Integer.MAX_VALUE);
         int size = serviceList.size();
         if (!(size > 0)) {
             return false;
         }
         for (int i = 0; i < size; i++) {
-            System.out.println("进入for循环");
-            System.out.println(serviceList.get(i).service.getClassName());
             if (serviceList.get(i).service.getClassName().equals(className) == true) {
                 isRunning = true;
                 break;
