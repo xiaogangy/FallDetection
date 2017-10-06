@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnFallDetection = (Button) findViewById(R.id.fallDetection);
+        btnFallDetection = (Button) findViewById(R.id.button5);
         btnFallDetection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -25,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnActivityRecord = (Button)findViewById(R.id.ActivitiesRecords);
-        btnActivityRecord.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent toActivies = new Intent(MainActivity.this,ActivityRecord.class);
-                startActivity(toActivies);
-            }
-        });
+//        btnActivityRecord = (Button)findViewById(R.id.ActivitiesRecords);
+//        btnActivityRecord.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent toActivies = new Intent(MainActivity.this,ActivityRecord.class);
+//                startActivity(toActivies);
+//            }
+//        });
     }
 }

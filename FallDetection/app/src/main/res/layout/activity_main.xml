@@ -1,99 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ibrahim.falldetection.MainActivity">
+    tools:context="com.example.ibrahim.falldetection.MainActivity"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
 
-    <Button
-        android:id="@+id/SmartHealth"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:background="@drawable/shapecircle"
-        android:gravity="center"
-        android:text="Smart Healthcare"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        android:layout_marginStart="8dp" />
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="509dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="509dp" />
 
-    <Button
-        android:id="@+id/ActivitiesRecords"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_weight="1"
-        android:background="@drawable/shapecircle"
-        android:gravity="center"
-        android:text="Activities Records"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintLeft_toLeftOf="@+id/guideline"
-        android:layout_marginStart="8dp" />
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/small_button"
+        tools:layout_editor_absoluteX="88dp"
+        tools:layout_editor_absoluteY="47dp" />
 
-    <Button
-        android:id="@+id/MedRemind"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:background="@drawable/shapecircle"
-        android:gravity="center"
-        android:text="Medicine Reminder"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintRight_toLeftOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        android:layout_marginEnd="8dp" />
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="600dp"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/elderly"
+        tools:layout_editor_absoluteX="-68dp"
+        tools:layout_editor_absoluteY="-262dp" />
 
-    <Button
-        android:id="@+id/fallDetection"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_weight="1"
-        android:background="@drawable/shapecircle"
-        android:gravity="center"
-        android:text="Fall Detection"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
-        app:layout_constraintRight_toLeftOf="@+id/guideline"
-        android:layout_marginEnd="8dp" />
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="387dp"
+        android:layout_height="520dp"
+        android:contentDescription="Fall Detection"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/elderly"
+        tools:layout_editor_absoluteX="-1dp"
+        tools:layout_editor_absoluteY="-5dp" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="192dp" />
+        app:layout_constraintGuide_begin="20dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="20dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/shapecircle" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="129dp"
+        android:background="@drawable/shapecircle"
+        android:text="Fall Detection"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="386dp"
+        tools:textAllCaps="false"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/guideline2"
+        android:layout_toEndOf="@+id/guideline2" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline2"
-        app:layout_constraintGuide_begin="284dp"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteY="284dp"
-        tools:layout_editor_absoluteX="0dp" />
+        android:id="@+id/guideline3"
+        app:layout_constraintGuide_begin="20dp"
+        android:orientation="vertical" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
