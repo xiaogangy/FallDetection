@@ -15,6 +15,11 @@ import android.widget.TextView;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
+/**
+ * This class manipulate the contacts interface.
+ * It reads the contacts information from local storage
+ * and use a ListView to show all these people.
+ */
 public class FallConfiguration extends AppCompatActivity {
 
     private Button btnAdd,btnClean;

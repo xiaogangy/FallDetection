@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * This class is responsible for controlling the main interface.
+ */
 public class MainActivity extends AppCompatActivity {
 
     private Button btnFallDetection;

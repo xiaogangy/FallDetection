@@ -12,6 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * This class is used to manipulate the interface when
+ * the user want to connect a new contact.
+ */
 public class AddContact extends AppCompatActivity {
 
     private EditText nameText,phoneText;

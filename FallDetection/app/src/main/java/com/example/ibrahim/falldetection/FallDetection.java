@@ -24,6 +24,13 @@ import com.example.ibrahim.falldetection.Service.FallMonitorService;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class manipulate the second activity.
+ * There are two buttons in this page.
+ * One is used to control the service on/off.
+ * The other will direct to contacts configuration page.
+ */
+
 public class FallDetection extends AppCompatActivity {
 
 //implements ServiceConnection
