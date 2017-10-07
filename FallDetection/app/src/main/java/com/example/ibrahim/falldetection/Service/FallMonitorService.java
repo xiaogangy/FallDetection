@@ -20,6 +20,11 @@ import android.telephony.SmsManager;
 import com.example.ibrahim.falldetection.FileService;
 import com.example.ibrahim.falldetection.MainActivity;
 import com.example.ibrahim.falldetection.R;
+import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
+import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
+
+import java.net.MalformedURLException;
+import java.util.Date;
 
 public class FallMonitorService extends Service implements SensorEventListener{
 
@@ -31,6 +36,9 @@ public class FallMonitorService extends Service implements SensorEventListener{
     private float gravity[] = new float[3];
     private float linear_acceleration[] = new float[3];
     private NotificationCompat.Builder builder;
+
+    private MobileServiceClient mClient;
+    private MobileServiceTable<FallDetectionRecord> mRecord;
 
     public FallMonitorService() {
     }
@@ -57,6 +65,15 @@ public class FallMonitorService extends Service implements SensorEventListener{
     @Override
     public void onCreate() {
         super.onCreate();
+
+        try {
+            mClient = new MobileServiceClient(
+                    "https://falldetectionunimelb.azurewebsites.net",
+                    this
+            );
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
         //初始化通讯录列表
         fileService = new FileService(this);
@@ -108,6 +125,7 @@ public class FallMonitorService extends Service implements SensorEventListener{
 
         if(checkFall(linear_acceleration)){
             sendNotification();
+            sendRecord();
 //            Intent i = new Intent(FallMonitorService.this, MainActivity.class);
 //            startActivity(i);
 
@@ -141,6 +159,30 @@ public class FallMonitorService extends Service implements SensorEventListener{
             return true;
         }
         return false;
+    }
+
+    private void sendRecord() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Location loc = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+
+        String phoneNumbers = ",";
+
+        if(!phoneList.equals(null)){
+            for (String phoneNumber : phoneList){
+                phoneNumbers = ""+phoneNumber+",";
+            }
+        }
+
+        final FallDetectionRecord record = new FallDetectionRecord();
+        String location = ""+loc.getLatitude()+","+loc.getLongitude();
+        //String location = "home";
+        Date date = new java.util.Date();
+        record.setLocation(location);
+        record.setEmergencyContact(phoneNumbers);
+        //record.setEmergencyContact("12315");
+        record.setTime(date);
+        mRecord = mClient.getTable(FallDetectionRecord.class);
+        mRecord.insert(record);
     }
 
     public void sendMessage(String phoneNumber){
